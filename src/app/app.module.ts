@@ -4,15 +4,16 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 // Material angular
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import 'hammerjs';
 
-import {QuestionDetailComponent } from './question/question-detail.component';
-import { QuestionListComponent} from './question/question-list.component';
-import {AsnwerFormComponent } from './answer/answer-form.component';
+import { QuestionDetailComponent } from './question/question-detail.component';
+import { QuestionListComponent } from './question/question-list.component';
+import { QuestionFormComponent } from './question/question-form.component';
+import { AsnwerFormComponent } from './answer/answer-form.component';
 import { SigninScreenComponent } from './auth/signin-screen.component';
-import {SignupScreenComponent } from './auth/signup-screen.component';
+import { SignupScreenComponent } from './auth/signup-screen.component';
 import { MomentModule } from 'angular2-moment';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MomentModule } from 'angular2-moment';
     AsnwerFormComponent,
     SigninScreenComponent,
     SignupScreenComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    QuestionFormComponent
   ],
   imports: [
     BrowserModule,
