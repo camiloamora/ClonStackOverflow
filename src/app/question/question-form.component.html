@@ -15,11 +15,20 @@
     </mat-form-field>
     <mat-grid-list cols="3" rowHeght="3:2">
         <mat-grid-tile>
-            <i mat-icon class="material-icons">help</i>
+            <mat-radio-group [ngModel] name="icon">
+              <mat-radio-button value="none" >
+                <i mat-icon class="material-icons">help</i>
+              </mat-radio-button>
+            </mat-radio-group>
             <small>Sin icono</small>
           </mat-grid-tile>
+
         <mat-grid-tile *ngFor="let icon of icons">
-          <i mat-icon class="devicon-{{ icon.name }}-{{ getIconVersion(icon) }}"></i>
+          <mat-radio-group [ngModel] name="icon">
+              <mat-radio-button  value="devicon-{{ icon.name }}-{{ getIconVersion(icon) }}" >
+              <i mat-icon class="devicon-{{ icon.name }}-{{ getIconVersion(icon) }} colored"></i>
+          </mat-radio-button>
+      </mat-radio-group>
         </mat-grid-tile>
     </mat-grid-list>
     <button type="submit" mat-raised-button color="accent">Enviar</button>
