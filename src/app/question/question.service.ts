@@ -14,7 +14,7 @@ import 'rxjs/add/operator/toPromise';
       this.questionsUrl = urljoin(environment.apiUrl, 'questions');
     }
 
-    getQuestion(): Promise<void | Question[]> {
+    getQuestions(): Promise<void | Question[]> {
       return this.http.get(this.questionsUrl)
         .toPromise()
         .then(response => response.json() as Question[])

@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Question } from './question.model';
+import { QuestionService } from './question.service';
 
 const q = new Question(
  '¿Cómo reutilizo un componente en android',
@@ -30,9 +31,26 @@ const q = new Question(
      font-size: 30px;
    }
   `
-  ]
+  ],
+  providers: [QuestionService]
 })
 
-export class QuestionListComponent{
-  questions: Question[] = new Array(10).fill(q);
+
+
+
+export class QuestionListComponent implements OnInit{
+
+  constructor(private questionService: QuestionService){}
+
+  //questions: Question[] = new Array(10).fill(q);
+  questions: Question[];
+  loading = true;
+
+  ngOnInit() {
+    this.questionService
+      .getQuestions()
+      .then((questions: Question[]) => {
+        this.questions = questions;
+      });
+  }
 }
