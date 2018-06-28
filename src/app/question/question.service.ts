@@ -6,6 +6,7 @@ import urljoin from 'url-join';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
+import { Answer } from '../answer/answer-model';
 
 @Injectable()
   export class QuestionService{
@@ -36,6 +37,27 @@ import 'rxjs/Rx';
       const headers = new Headers({ 'Content-Type': 'application/json' });
 
       return this.http.post(this.questionsUrl, body,{ headers })
+        .map((response: Response) => response.json())
+        .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    addAnswer(answer: Answer){
+      const a = {
+        description: answer.description,
+        question: {
+          _id: answer.question._id
+        }
+      };
+      //console.log(answer);
+      //const body = JSON.stringify(answer);
+      const body = JSON.stringify(a);
+      console.log(answer.question._id.toString());
+      const headers = new Headers({ 'Content-Type': 'application/json' });
+      // /api/questions/:id/answers
+      const idString = answer.question._id.toString();
+      const url = urljoin(this.questionsUrl, idString, 'answers');
+      console.log(url);
+      return this.http.post(url, body,{ headers })
         .map((response: Response) => response.json())
         .catch((error: Response) => Observable.throw(error.json()));
     }
