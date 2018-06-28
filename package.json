@@ -36,6 +36,7 @@
     "nodemon": "^1.11.0",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",
+    "sweet-scroll": "^3.0.1",
     "url-join": "^4.0.0",
     "zone.js": "^0.8.26"
   },

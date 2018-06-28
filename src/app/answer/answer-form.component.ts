@@ -2,8 +2,9 @@ import { Component, Input} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Answer } from './answer-model';
 import { Question } from '../question/question.model';
-import { User } from '../auth/user.model';
+// import { User } from '../auth/user.model';
 import { QuestionService} from '../question/question.service';
+import SweetScroll from'sweet-scroll';
 
 @Component({
   selector: 'app-asnwer-form',
@@ -18,9 +19,10 @@ import { QuestionService} from '../question/question.service';
 
 export class AsnwerFormComponent{
   @Input() question: Question;
+  sweetScroll: SweetScroll;
 
   constructor(private questionService: QuestionService){
-
+    this.sweetScroll = new SweetScroll();
   }
 
   onSubmit(form: NgForm){
@@ -35,7 +37,10 @@ export class AsnwerFormComponent{
     this.questionService
       .addAnswer(answer)
       .subscribe(
-        a => this.question.answers.unshift(a),
+        a => {
+           this.question.answers.unshift(a);
+           this.sweetScroll.to('#titleMayor');
+        },
         error => console.log(error)
       );
     // this.question.answers.unshift(answer);

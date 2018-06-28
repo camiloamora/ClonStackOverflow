@@ -69,7 +69,8 @@ app.post('/:id/answers', questionMiddleware, userMiddleware , (req, res) =>{
   const q = req.question
   answer.createdAt = new Date()
   answer.user = req.user
-  console.log(q)
+  //console.log(q)
+  //console.log(q.answers)
   q.answers.push(answer)
   res.status(201).json(answer)
 })

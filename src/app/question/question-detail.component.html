@@ -6,7 +6,7 @@
             <i md-list-icon class="{{ question.icon}} icon" ></i>
         </div>
         <mat-card-title>
-            <h2>{{ question.title}}</h2>
+            <h2 id="titleMayor">{{ question.title}}</h2>
         </mat-card-title>
         <mat-card-subtitle>
           <small>Camilo Mora - {{ question.createdAt | amLocale:'es' | amTimeAgo }}</small>
@@ -17,7 +17,7 @@
     </mat-card-content>
 </mat-card>
 <div class="answers">
-  <h3>Respuestas</h3>
+  <h3 id="title">Respuestas</h3>
   <ul class="answers-list" *ngIf="question.answers.length > 0">
     <li *ngFor="let answer of question.answers">
       <h5>
