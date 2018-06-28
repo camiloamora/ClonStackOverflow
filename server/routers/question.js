@@ -4,7 +4,7 @@ const app = express.Router()
 
 const question = {
   _id: 1,
-  title: '¿Como reutilizo un componente en android',
+  title: 'Hola ¿Como reutilizo un componente en android',
   description:'Esta es mi pregunta',
   createdAt: new Date(),
   icon: 'devicon-android-plain',
@@ -19,7 +19,7 @@ const question = {
 
 const questions = new Array(10).fill(question)
 
-// /api/questions
+// GET /api/questions
 app.get('/', (req, res) =>
 {
   setTimeout(() =>{
@@ -27,7 +27,28 @@ app.get('/', (req, res) =>
   }, 2000)
 })
 
-// /api/questions/id
-app.get('/:id', (req, res) => res.status(200).json(question))
+// GET /api/questions/id
+app.get('/:id', (req, res) => {
+  console.log('entro por id')
+  const { id } = req.params
+  const q = questions.find(({ _id }) => _id === +id)
+  res.status(200).json(q)
+})
+
+// POST /api/question
+app.post('/', (req,res) =>{
+  const question = req.body
+  question._id = +new Date()
+  question.user =   {
+    email: 'kalufau@hotmail.com',
+    password: '123456',
+    firstName: 'Camilo',
+    lastName: 'Mora'
+  }
+  question.createdAt = new Date()
+  question.answers = []
+  questions.push(question)
+  res.status(201).json(question)
+})
 
 export default app

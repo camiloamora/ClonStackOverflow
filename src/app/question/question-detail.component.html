@@ -1,3 +1,5 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading">
 <mat-card>
     <mat-card-header>
         <div mat-card-avatar>
@@ -29,4 +31,5 @@
   </ul>
   <p *ngIf="question.answers.length === 0">Se el primero en responder esta pregunta</p>
   <app-asnwer-form [question]="question" class="answer-form"></app-asnwer-form>
+</div>
 </div>
