@@ -6,6 +6,7 @@ import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
+import { Router } from '@angular/router';
 
 @Injectable()
 
@@ -13,7 +14,7 @@ export class AuthService {
   usersUrl: string;
   currentUser?: User;
 
-  constructor(private http: Http){
+  constructor(private http: Http, private router: Router){
     this.usersUrl = urljoin(environment.apiUrl, 'auth');
     if(this.isLoggedIn()){
       const { userId, email, firstName, lastName } = JSON.parse(localStorage.getItem('userId'));
@@ -40,6 +41,7 @@ export class AuthService {
     this.currentUser =new User(email, null, firstName, lastName, userId);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify({ userId, firstName, lastName, email }));
+    this.router.navigateByUrl('/');
   }
 
   isLoggedIn()

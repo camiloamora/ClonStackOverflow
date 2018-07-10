@@ -23,6 +23,7 @@ function comparePasswords(providedPassword, userPassword){
 }
 
 app.post('/signin', (req, res, next)=>{
+  console.log(email)
   const {email, password} = req.body
   const user = findUserByEmail(email)
 
